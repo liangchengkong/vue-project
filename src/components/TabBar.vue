@@ -1,7 +1,7 @@
 <script>
 import {ref} from 'vue';
 import 'vant/lib/index.css';
-import { RouterLink, RouterView } from 'vue-router'
+// import { RouterLink, RouterView } from 'vue-router'
 
 
 export default {
