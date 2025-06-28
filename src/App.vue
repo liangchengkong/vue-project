@@ -7,17 +7,7 @@ import Tabbar from './components/TabBar.vue';
   <header>
 
     <div class="wrapper">
-
-
       <nav>
-        <RouterLink to="/">首页</RouterLink>
-        <RouterLink to="/AI">AI问答</RouterLink>
-        <RouterLink to="/content">
-            可视化
-        </RouterLink>
-        <RouterLink to="/visualization">
-            图文内容呈现
-        </RouterLink>
         <Tabbar></Tabbar>
       </nav>
     </div>

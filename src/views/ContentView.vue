@@ -9,7 +9,7 @@ export default{
     },
     mounted(){
         axios.get('https://www.imooc.com/api/mall-wepApp/index/product?icode=JA2424E92D6EFBEEC').then(res=>{this.item=res.data.data
-         console.log(res.data.data);
+         console.log(res);
         }).catch(err=>{console.error(err);})
     }
 }
