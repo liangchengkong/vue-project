@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { useRoute, RouterView } from 'vue-router'
 import Tabbar from './components/TabBar.vue';
+import router from './router';
 // import Login from './components/Login.vue';
+let route= useRoute();
+
 </script>
 
 <template>
   <header>
 
-    <div class="wrapper">
-      <nav>
-        <Tabbar></Tabbar>
-      </nav>
+    <div >
+
+        <Tabbar v-if="route.path!='/login'"></Tabbar>
+
 
     </div>
 
@@ -20,7 +23,7 @@ import Tabbar from './components/TabBar.vue';
 </template>
 
 <style scoped>
-header {
+/* header {
   line-height: 1.5;
   max-height: 100vh;
 }
@@ -59,9 +62,6 @@ nav a:first-of-type {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
 
   header .wrapper {
     display: flex;
@@ -77,5 +77,5 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
+} */
 </style>

@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Login from '@/components/Login.vue'
 
-const isLoggedIn=false;
+//const isLoggedIn=false;
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -9,8 +10,8 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      // redirect:'login',
-       meta:{requiresAuth:true}
+       //redirect:'login',
+       //meta:{requiresAuth:true}
     },
     {
       path: '/AI',
@@ -45,10 +46,13 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !isLoggedIn) { // 检查登录状态
-    next('/login') // 未登录跳转到登录页
-  } else {
+    if (to.path==='/login'||sessionStorage.getItem('token')) { // 检查登录状态
+    //console.log(sessionStorage.getItem('token'))
     next()
+  } else {
+        //console.log(localStorage.getItem('token'))
+      //console.log(to.meta.requiresAuth)
+    next('/login')
   }
 })
 export default router
