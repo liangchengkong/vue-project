@@ -1,4 +1,4 @@
-<script >
+<!-- <script >
 
 import OpenAI from "openai";
 
@@ -10,16 +10,16 @@ export default {
       openai: new OpenAI({
         baseURL: 'https://api.deepseek.com/v1',
         apiKey:  import.meta.env.VITE_DEEPSEEK_API_KEY,// 注意：不要在前端硬编码密钥
-        dangerouslyAllowBrowser: true 
+        dangerouslyAllowBrowser: true
       })
     }
   },
   methods: {
     async askAI() {
       const completion = await this.openai.chat.completions.create({
-        messages: [{ 
-          role: "user", 
-          content: this.userQuestion 
+        messages: [{
+          role: "user",
+          content: this.userQuestion
         }],
         model: "deepseek-chat",
       });
@@ -38,4 +38,4 @@ export default {
 </template>
 <style scoped>
 
-</style>
+</style> -->

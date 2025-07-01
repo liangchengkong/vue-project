@@ -15,10 +15,9 @@ export default {
 <template>
     <div>
         <van-tabbar v-model="active" >
-            <van-tabbar-item icon="home-o" to="/">首页</van-tabbar-item>
-            <van-tabbar-item icon="chat-o" to="AI">智能问答</van-tabbar-item>
-            <van-tabbar-item icon="info-o" to="/content">可视化</van-tabbar-item>
-            <van-tabbar-item icon="hot-o" to="/visualization">内容展示</van-tabbar-item>
+            <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
+            <van-tabbar-item icon="chat-o" to="/Learn">学习</van-tabbar-item>
+            <van-tabbar-item icon="contact" to="/Mine">我的</van-tabbar-item>
         </van-tabbar>
     </div>
 </template>

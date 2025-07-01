@@ -13,29 +13,29 @@ const router = createRouter({
        //redirect:'login',
        //meta:{requiresAuth:true}
     },
-    {
-      path: '/AI',
-      name: 'AIview',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AIView.vue'),
-    },
+    // {
+    //   path: '/AI',
+    //   name: 'AIview',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../views/AIView.vue'),
+    // },
       {
-          path: '/Content',
-          name: 'Contentview',
+          path: '/Learn',
+          name: 'Learnview',
           // route level code-splitting
           // this generates a separate chunk (About.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import('../views/ContentView.vue'),
+          component: () => import('../views/LearnView.vue'),
       },
       {
-          path: '/visualization',
-          name: 'visualizationview',
+          path: '/Mine',
+          name: 'Mine',
           // route level code-splitting
           // this generates a separate chunk (About.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import('../views/VisualizationView.vue'),
+          component: () => import('../views/MineView.vue'),
       },
       {
         path:'/login',

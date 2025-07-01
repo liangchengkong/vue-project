@@ -46,7 +46,10 @@ else
 <style scoped>
 
 </style> -->
-<template>
+
+
+
+<!-- <template>
 
 
 <div >
@@ -85,17 +88,83 @@ else
 </div>
 
 
+</template> -->
+
+<template>
+  <div class="login-page">
+    <!-- 返回箭头 -->
+    <van-cell-group>
+      <van-cell is-link @click="onBack" title="&lt;" value="" />
+    </van-cell-group>
+
+    <!-- 标题 -->
+    <h2 class="title">密码登录</h2>
+
+    <!-- 手机号输入框 -->
+    <van-field
+      v-model="phone"
+      type="text"
+      placeholder="请输入手机号"
+      round
+      :border="false"
+    />
+
+    <!-- 密码输入框 + 忘记密码 -->
+    <van-field
+      v-model="password"
+      type="password"
+      placeholder="请输入密码"
+      :clearable="false"
+    >
+      <template #button>
+        <van-button size="mini" type="text" @click="onForgetPassword">
+          忘记密码
+        </van-button>
+      </template>
+    </van-field>
+
+    <!-- 协议勾选 -->
+    <van-checkbox v-model="isAgreed" shape="round" class="agree-checkbox">
+    </van-checkbox>
+      我已阅读
+      <a href="#" class="protocol-link">《服务协议》</a> 和
+      <a href="#" class="protocol-link">《隐私政策》</a>并同意
+      相关约定
+
+
+    <!-- 登录按钮 -->
+    <van-button
+      type="danger"
+      block
+      round
+      @click="login"
+      :disabled="!isAgreed"
+    >
+      登录
+    </van-button>
+
+    <!-- 短信登录链接 -->
+    <div class="sms-link" @click="onSmsLogin">短信验证码登录</div>
+
+    <!-- 其他登录方式 -->
+    <div class="other-login">其它登录方式</div>
+    <div class="other-login-icons">
+      <van-icon name="phone-o" class="icon" @click="onOtherLogin('phone')" />
+      <van-icon name="wechat" class="icon wechat" @click="onOtherLogin('wechat')" />
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios';
-//import 'vant/lib/index.css';
+
 
 export default {
   name: 'Login',
   data() {
     return {
-      username: '',
+        isAgreed:false,
+      phone: '',
       password: '',
       showPassword: false
     };
@@ -104,22 +173,27 @@ export default {
       togglePasswordVisibility() {
       this.showPassword = !this.showPassword;},
     login() {
-      if (this.password === '123456' && this.username === 'admin') {
-        this.$router.push('/');
-        sessionStorage.setItem('token', '111');
-      } else {
-        //this.$message.error('密码错误或用户不存在');
+    //   if (this.password === '123456' && this.phone === 'admin') {
+    //     this.$router.push('/');
+    //     sessionStorage.setItem('token', '111');
+    //   } else {
+    //     //this.$message.error('密码错误或用户不存在');
 
-      }
+    //   }
+          axios.post('http://127.0.0.1:5000/api/login',{phone:this.phone,password:this.password})
+    .then(res=>{localStorage.setItem('token','true');this.$router.push='/'}).catch(err=>{})
+}
     },
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
     }
   }
-}
+
 </script>
 
-<style scoped>
+<!-- <style scoped>
+
+
 
 .container {
   display: flex;
@@ -129,5 +203,64 @@ export default {
 }
 button {
   cursor: pointer;
+}
+</style> -->
+<style scoped>
+
+.van-field {
+  --van-field-border-color: black; /* 边框颜色 */
+  --van-field-border-radius: 8px; /* 圆角大小 */
+  --van-field-border-width: 1px; /* 边框宽度 */
+  --van-field-padding: 10px; /* 内部间距 */
+}
+.login-page {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.agree-checkbox {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.protocol-link {
+  color: #1989fa;
+  text-decoration: none;
+}
+
+.sms-link {
+  text-align: center;
+  color: #1989fa;
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.other-login {
+  text-align: center;
+  margin: 20px 0 10px;
+  font-size: 14px;
+  color: #999;
+}
+
+.other-login-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.icon {
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.wechat {
+  color: #28a745;
 }
 </style>
