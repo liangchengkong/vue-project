@@ -94,7 +94,7 @@ else
   <div class="login-page">
     <!-- 返回箭头 -->
     <van-cell-group>
-      <van-cell is-link @click="onBack" title="&lt;" value="" />
+      <van-cell is-link  title="&lt;" value="" />
     </van-cell-group>
 
     <!-- 标题 -->
@@ -117,7 +117,7 @@ else
       :clearable="false"
     >
       <template #button>
-        <van-button size="mini" type="text" @click="onForgetPassword">
+        <van-button size="mini" type="text" >
           忘记密码
         </van-button>
       </template>
@@ -148,10 +148,10 @@ else
 
     <!-- 其他登录方式 -->
     <div class="other-login">其它登录方式</div>
-    <div class="other-login-icons">
+    <!-- <div class="other-login-icons">
       <van-icon name="phone-o" class="icon" @click="onOtherLogin('phone')" />
       <van-icon name="wechat" class="icon wechat" @click="onOtherLogin('wechat')" />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -173,15 +173,15 @@ export default {
       togglePasswordVisibility() {
       this.showPassword = !this.showPassword;},
     login() {
-    //   if (this.password === '123456' && this.phone === 'admin') {
-    //     this.$router.push('/');
-    //     sessionStorage.setItem('token', '111');
-    //   } else {
-    //     //this.$message.error('密码错误或用户不存在');
+      if (this.password === '123456' && this.phone === 'admin') {
+        this.$router.push('/');
+        sessionStorage.setItem('token', '111');
+      } else {
+        //this.$message.error('密码错误或用户不存在');
 
-    //   }
-          axios.post('http://127.0.0.1:5000/api/login',{phone:this.phone,password:this.password})
-    .then(res=>{localStorage.setItem('token','true');this.$router.push='/'}).catch(err=>{})
+      }
+    //       axios.post('api',{phone:this.phone,password:this.password})
+    // .then(res=>{sessionStorage.setItem('token', '111');this.$router.push='/'}).catch(err=>{console.error('登录失败', err);})
 }
     },
     togglePasswordVisibility() {
