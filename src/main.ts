@@ -5,13 +5,22 @@ import { createPinia } from 'pinia'
 import { Tabbar, TabbarItem } from 'vant';
 
 import App from './App.vue'
-import router from './router' 
+import router from './router'
+import { Button } from 'vant';
+import { Form,Field, CellGroup } from 'vant';
+
+
+
+
 
 
 const app = createApp(App)
-
+app.use(Button);
 app.use(createPinia())
 app.use(router)
 app.use(Tabbar);
 app.use(TabbarItem);
+app.use(Field);
+app.use(Form);
+app.use(CellGroup);
 app.mount('#app')

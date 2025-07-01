@@ -49,49 +49,47 @@ else
 <template>
 
 
-      <div >
-        <div >
-          <h2 >欢迎登录</h2>
-          <p >请输入您的账号和密码</p>
-        </div>
+<div >
+<van-form @submit.prevent="login">
+  <van-cell-group inset>
+    <van-field
+      v-model="username"
+    left-icon="user-o"
+      name="username"
+      label="用户名"
+      placeholder="用户名"
+      :rules="[{ required: true, message: '请填写用户名' }]"
+    />
+    <van-field
+      v-model="password"
+      left-icon="goods-collect-o"
+  :right-icon="showPassword ? 'eye' : 'eye-o'"
+  @click-right-icon="togglePasswordVisibility"
+  :type="showPassword ? 'text' : 'password'"
+      name="password"
+      label="密码"
+      placeholder="密码"
+      :rules="[{ required: true, message: '请填写密码' }]"
+    />
+    <van-cell-group inset>
 
-        <form @submit.prevent="login" >
-          <div >
-            <input type="text"v-model="username"placeholder="请输入用户名">
-          </div>
+</van-cell-group>
 
-          <div >
-            <input :type="showPassword ? 'text' : 'password'"v-model="password"placeholder="请输入密码">
-            <button type="button"@click="togglePasswordVisibility">
-            </button>
-          </div>
-
-          <button type="submit">
-            登录
-          </button>
-
-          <div >
-            <div >
-              <input type="checkbox"id="remember">
-              <label for="remember" >记住我</label>
-            </div>
-            <a href="#" >忘记密码?</a>
-          </div>
-        </form>
-
-        <div >
-          <p >
-            还没有账号? <a href="#" >立即注册</a>
-          </p>
-        </div>
-
-      </div>
+  </van-cell-group>
+  <div style="margin: 16px;">
+    <van-button round block type="primary" @click="login">
+      登录
+    </van-button>
+  </div>
+</van-form>
+</div>
 
 
 </template>
 
 <script>
 import axios from 'axios';
+//import 'vant/lib/index.css';
 
 export default {
   name: 'Login',
@@ -103,12 +101,15 @@ export default {
     };
   },
   methods: {
+      togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;},
     login() {
       if (this.password === '123456' && this.username === 'admin') {
         this.$router.push('/');
         sessionStorage.setItem('token', '111');
       } else {
-        this.$message.error('密码错误或用户不存在');
+        //this.$message.error('密码错误或用户不存在');
+
       }
     },
     togglePasswordVisibility() {
@@ -120,6 +121,12 @@ export default {
 
 <style scoped>
 
+.container {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  /*height: 300px; /* 需要指定高度 */
+}
 button {
   cursor: pointer;
 }
