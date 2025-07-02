@@ -42,17 +42,22 @@ const router = createRouter({
         name:'login',
         component:()=>import('../components/Login.vue'),
       },
+      {
+          path:'/Register',
+        name:'register',
+        component:()=>import('../views/RegisterView.vue')
+      }
   ],
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path==='/login'||sessionStorage.getItem('token')) { // 检查登录状态
-    //console.log(sessionStorage.getItem('token'))
+    if (to.path === '/login' || sessionStorage.getItem('token') || to.path ==='/Register') { // 检查登录状态
+    console.log(to.path)
     next()
   } else {
         //console.log(localStorage.getItem('token'))
       //console.log(to.meta.requiresAuth)
-    next('/login')
+    next('/login');
   }
 })
 export default router
