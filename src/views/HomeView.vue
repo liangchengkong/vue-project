@@ -48,14 +48,14 @@
 
     <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
     <van-cell-group>
-      <van-cell v-for="(item, index) in 6" :key="index" title="列表项" value="具体内容" />
+      <van-cell v-for="(item, index) in items" :key="index" title="列表项" value=item.value />
     </van-cell-group>
 
 
   </div>
 </template>
 
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue';
 
 const searchValue = ref('');
@@ -71,7 +71,7 @@ const onSearch = (value) => {
   // 搜索逻辑，比如根据 value 发请求获取数据等
   console.log('搜索内容：', value);
 };
-</script>
+</script> -->
 
 <style scoped>
 .home-page {
@@ -102,3 +102,42 @@ const onSearch = (value) => {
   color: #333;
 }
 </style>
+<script>
+import axios from 'axios';
+//import { onMounted } from 'vue';
+import { ref } from 'vue';
+
+const searchValue = ref('');
+const activeTab = ref(0);
+const activeTabbar = ref(0);
+
+const onSearchClick = () => {
+  // 点击搜索图标的逻辑，比如展开搜索框等，这里简单示例
+  console.log('点击搜索图标');
+};
+
+const onSearch = (value) => {
+  // 搜索逻辑，比如根据 value 发请求获取数据等
+  console.log('搜索内容：', value);
+};
+
+export default {
+  name: 'row',
+  data() {
+    return {
+      items: []
+    };
+  },
+  mounted() {
+    axios.get('https://www.imooc.com/api/mall-wepApp/index/product?icode=JA2424E92D6EFBEEC')
+      .then(res => {
+        this.items = res.data.data;
+        console.log(this.items);
+      })
+      .catch(err => {
+        console.error('数据加载失败:', err);
+      });
+  }
+}
+
+</script>

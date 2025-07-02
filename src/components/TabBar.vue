@@ -16,7 +16,7 @@ export default {
     <div>
         <van-tabbar v-model="active" >
             <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
-            <van-tabbar-item icon="chat-o" to="/Learn">学习</van-tabbar-item>
+            <van-tabbar-item icon="live" to="/Learn">学习</van-tabbar-item>
             <van-tabbar-item icon="contact" to="/Mine">我的</van-tabbar-item>
         </van-tabbar>
     </div>

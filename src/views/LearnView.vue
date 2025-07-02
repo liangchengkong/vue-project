@@ -50,22 +50,6 @@ export default{
   <div class="home-page">
     <!-- 顶部导航栏 -->
 <div class="redbg" style="height: 80px;">
-    <!-- <van-nav-bar
-      right-icon="search"
-      @click-right="onSearchClick"
-    >
-      <template #left>
-        <van-search
-          v-model="searchValue"
-          placeholder="搜索"
-          shape="round"
-          @search="onSearch"
-          style="width: 160px;"
-        />
-        <div style="width: 170px;">红色教育</div>
-      </template>
-
-    </van-nav-bar> -->
         <van-search
           v-model="searchValue"
           placeholder="搜索"
@@ -74,12 +58,11 @@ export default{
           background="#d62f3f"
           style="width: 120px;"
         />
-
 </div>
     <!-- 标签栏 -->
     <van-tabs v-model:active="activeTab">
       <van-tab title="推荐" />
-      <van-tab title="榜单" @click="goToRank"/>
+      <van-tab title="榜单" @click="goToRank" to="/Learn/Rank"/>
     </van-tabs>
 
 <!-- <div class="redbg" style="height:100px"></div> -->

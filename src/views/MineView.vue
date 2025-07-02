@@ -3,7 +3,6 @@
     <!-- 顶部背景 + 头像昵称区域 -->
     <div class="top-bg">
       <van-nav-bar
-        title="红色教育"
         left-arrow
         class="custom-nav"
         style="background-color: transparent;"
@@ -85,7 +84,8 @@ const handleSettingClick = (item) => {
   position: relative;
   width: 100%;
   height: 200px;
-  background: linear-gradient(180deg, #c82333 0%, #d93025 100%); /* 渐变红色背景，可调整色值 */
+  background-image: url(@/assets/红色教育.png);
+background-size: contain;
 }
 
 /* 导航栏样式（透明背景，适配顶部渐变） */
@@ -101,7 +101,7 @@ const handleSettingClick = (item) => {
 /* 用户信息（头像 + 昵称） */
 .user-info {
   position: absolute;
-  bottom: -40px; /* 向上偏移，露出头像 */
+  bottom: 10px; /* 向上偏移，露出头像 */
   left: 20px;
   display: flex;
   align-items: center;

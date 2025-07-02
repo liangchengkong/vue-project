@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, RouterView } from 'vue-router'
 import Tabbar from './components/TabBar.vue';
-import router from './router';
+//import router from './router';
 // import Login from './components/Login.vue';
 let route= useRoute();
 
