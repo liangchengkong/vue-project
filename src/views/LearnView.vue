@@ -61,26 +61,18 @@ export default{
 </div>
     <!-- 标签栏 -->
     <van-tabs v-model:active="activeTab">
-      <van-tab title="推荐" />
-      <van-tab title="榜单" @click="goToRank" to="/Learn/Rank"/>
-    </van-tabs>
-
-<!-- <div class="redbg" style="height:100px"></div> -->
-<!-- <img src="@/assets/去除红色教育字体.png" alt="" style="height: 100px;"> -->
-    <!-- 轮播图 -->
+      <van-tab title="推荐" >
+<!-- 轮播图 -->
     <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(item, index) in 3" :key="index">
         <div class="swipe-item">图片</div>
       </van-swipe-item>
     </van-swipe>
-
-    <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
-
+<!-- 推荐 -->
     <div class="recommend-section">
       <div class="section-header">
         <span>为您推荐</span>
         <van-button  round type="default" size="small" @click="goToMore" >更多</van-button>
-
       </div>
       <div class="course-list">
         <div class="course-item" v-for="(item, index) in 4" :key="index">
@@ -90,6 +82,33 @@ export default{
         </div>
       </div>
     </div>
+      </van-tab>
+      <van-tab title="榜单" @click="goToRank" >
+    <div class="recommend-section">
+      <div class="section-header">
+      </div>
+      <div class="rank-list">
+        <div class="rank-item" v-for="(item, index) in 4" :key="index">
+          <div class="rank-img" > </div>
+          <div>名称</div>
+          <div>时长</div>
+
+          <div>评分</div>
+
+        </div>
+      </div>
+    </div>
+      </van-tab>
+    </van-tabs>
+
+<!-- <div class="redbg" style="height:100px"></div> -->
+<!-- <img src="@/assets/去除红色教育字体.png" alt="" style="height: 100px;"> -->
+    <!-- 轮播图 -->
+
+
+    <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
+
+
 
   </div>
 </template>
@@ -180,11 +199,34 @@ const goToMore = () => {
   margin-bottom: 10px;
   text-align: center;
 }
+.rank-list{
+    width: 100%;
+      display: flex;
+      flex-direction: column;
+
+}
+
+.rank-item{
+    width: 100%;
+      margin-bottom: 10px;
+/* flex-wrap: wrap; */
+  /* text-align: center; */
+}
 .course-img {
   height: 80px;
   background-color: #eee;
   border-radius: 8px;
   margin-bottom: 5px;
+
+}
+.rank-img {
+  height: 80px;
+  background-color: #eee;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  width: 50%;
+  float:left
 }
 .course-name {
   font-size: 14px;

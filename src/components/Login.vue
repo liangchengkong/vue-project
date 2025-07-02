@@ -185,7 +185,7 @@ export default {
 
       }
     //       axios.post('api',{phone:this.phone,password:this.password})
-    // .then(res=>{sessionStorage.setItem('token', '111');this.$router.push='/'}).catch(err=>{console.error('登录失败', err);})
+    // .then(res=>{sessionStorage.setItem('token', '111');this.$router.push('/login')}).catch(err=>{console.error('登录失败', err);})
 },
     OnRegister(){this.$router.push('/Register')}
     },

@@ -26,7 +26,7 @@
           background="#d62f3f"
           style="width: 120px;"
         />
-
+        
 </div>
     <!-- 标签栏 -->
     <van-tabs v-model:active="activeTab">

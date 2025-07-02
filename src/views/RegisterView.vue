@@ -37,7 +37,7 @@
       type="danger"
       block
       @click="handleRegister"
-      :disabled="!isAgree || !phone || !password || !confirmPassword || password!==confirmPassword"
+      :disabled="!isAgree || !phone || !password || !confirmPassword "
     >
       注册
     </van-button>
