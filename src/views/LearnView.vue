@@ -64,7 +64,7 @@ export default{
       <van-tab title="推荐" >
 <!-- 轮播图 -->
     <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="(item, index) in 3" :key="index">
+      <van-swipe-item v-for="(item, index) in 2" :key="index">
         <div class="swipe-item">图片</div>
       </van-swipe-item>
     </van-swipe>
@@ -78,7 +78,7 @@ export default{
         <div class="course-item" v-for="(item, index) in 4" :key="index">
           <div class="course-img"> <!-- 占位图 --> </div>
           <div class="course-name">XX课程</div>
-          <div class="course-duration">时长</div>
+          <div class="course-duration">时长{{ item }}</div>
         </div>
       </div>
     </div>
@@ -90,10 +90,10 @@ export default{
       <div class="rank-list">
         <div class="rank-item" v-for="(item, index) in 4" :key="index">
           <div class="rank-img" > </div>
-          <div>名称</div>
-          <div>时长</div>
+          <div class="name">{{item}}</div>
+          <div class="time">时长</div>
 
-          <div>评分</div>
+          <div class="score">评分</div>
 
         </div>
       </div>
@@ -114,7 +114,15 @@ export default{
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+
+
+const rankcourse=ref('');
+const recommendcourse=ref('');
+onMounted(()=>{axios.post('api').then(res=>{recommendcourse.value=res.recommendcourse;
+rankcourse.value=res.rankcourse;
+}).catch(err=>{console.log('无法获取到课程')})})
 
 const searchValue = ref('');
 const activeTab = ref(0);
@@ -166,7 +174,14 @@ const goToMore = () => {
   margin: 10px;
   border-radius: 8px;
 }
+.name{
+    margin: 12px;
 
+}
+.time{
+    margin-right: 70px;
+    float: left;
+}
 .swipe-item {
   display: flex;
   justify-content: center;

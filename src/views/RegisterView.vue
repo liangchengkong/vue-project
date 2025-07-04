@@ -67,7 +67,7 @@ export default {
     const password = ref('');
     const confirmPassword = ref('');
     const isAgree = ref(false);
-
+    const re=ref('');
     // 返回上一页逻辑
     const onClickLeft = () => {
       router.go(-1); // 使用 router 实例
@@ -80,8 +80,8 @@ export default {
         return;
       }
       else
-      {axios.post('api',{phone:phone.value,password:password.value})
-     .then(res=>{router.push('login')}).catch(err=>{console.error('注册失败', err);})}
+      {axios.post('http://192.168.73.40:8000/api/register',{phone:phone.value,password:password.value})
+     .then(res=>{router.push('login'),re.value=res;console.log(re)}).catch(err=>{console.error('注册失败', err);})}
       //console.log('手机号：', phone.value, '密码：', password.value, '同意协议：', isAgree.value);
     };
 

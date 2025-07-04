@@ -26,52 +26,131 @@
           background="#d62f3f"
           style="width: 120px;"
         />
-        
+
 </div>
     <!-- 标签栏 -->
     <van-tabs v-model:active="activeTab">
-      <van-tab title="推荐" />
-      <van-tab title="要闻" />
-      <van-tab title="新思想" />
-      <van-tab title="历史" />
-      <van-tab title="综合" />
-    </van-tabs>
-
-<!-- <div class="redbg" style="height:100px"></div> -->
-<!-- <img src="@/assets/去除红色教育字体.png" alt="" style="height: 100px;"> -->
+      <van-tab title="推荐" >
     <!-- 轮播图 -->
     <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="(item, index) in 3" :key="index">
-        <div class="swipe-item">图片</div>
+      <van-swipe-item v-for="(item, index) in image" :key="index">
+        <div class="swipe-item" :style="{ backgroundImage: `url('${item.url}')` }"></div>
+      </van-swipe-item>
+    </van-swipe>
+        <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
+    <van-cell-group>
+      <van-cell v-for="(item, index) in items" :key="index"  :value='item.publish_time' @click="ToMessage" >
+    <template #title>
+      <div class="title-with-image">
+        <img :src="item.image_url" alt="图片" class="title-image" />
+        <span class="title-text">{{ item.title }}</span>
+      </div>
+    </template>
+      </van-cell>
+    </van-cell-group>
+
+
+      </van-tab>
+      <van-tab title="要闻" >
+    <!-- 轮播图 -->
+    <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item v-for="(item, index) in image" :key="index">
+        <div class="swipe-item" :style="{ backgroundImage: `url('${item.url}')` }"></div>
       </van-swipe-item>
     </van-swipe>
 
-    <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
+        <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
     <van-cell-group>
-      <van-cell v-for="(item, index) in items" :key="index" title="列表项" value=item.value />
+      <van-cell v-for="(item, index) in items" :key="index"  :value='item.publish_time' @click="ToMessage" >
+    <template #title>
+      <div class="title-with-image">
+        <img :src="item.image_url" alt="图片" class="title-image" />
+        <span class="title-text">{{ item.title }}</span>
+      </div>
+    </template>
+      </van-cell>
     </van-cell-group>
 
+
+      </van-tab>
+      <van-tab title="新思想">
+    <!-- 轮播图 -->
+    <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item v-for="(item, index) in image" :key="index">
+        <div class="swipe-item" :style="{ backgroundImage: `url('${item.url}')` }"></div>
+      </van-swipe-item>
+    </van-swipe>
+
+        <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
+    <van-cell-group>
+      <van-cell v-for="(item, index) in items" :key="index"  :value='item.publish_time' @click="ToMessage" >
+    <template #title>
+      <div class="title-with-image">
+        <img :src="item.image_url" alt="图片" class="title-image" />
+        <span class="title-text">{{ item.title }}</span>
+      </div>
+    </template>
+      </van-cell>
+    </van-cell-group>
+
+
+      </van-tab>
+      <van-tab title="历史" >
+    <!-- 轮播图 -->
+    <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item v-for="(item, index) in image" :key="index">
+        <div class="swipe-item" :style="{ backgroundImage: `url('${item.url}')` }"></div>
+      </van-swipe-item>
+    </van-swipe>
+
+        <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
+    <van-cell-group>
+      <van-cell v-for="(item, index) in items" :key="index"  :value='item.publish_time' @click="ToMessage" >
+    <template #title>
+      <div class="title-with-image">
+        <img :src="item.image_url" alt="图片" class="title-image" />
+        <span class="title-text">{{ item.title }}</span>
+      </div>
+    </template>
+      </van-cell>
+    </van-cell-group>
+
+
+      </van-tab>
+      <van-tab title="综合" >
+    <!-- 轮播图 -->
+    <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item v-for="(item, index) in image" :key="index">
+        <div class="swipe-item" :style="{ backgroundImage: `url('${item.url}')` }"></div>
+      </van-swipe-item>
+    </van-swipe>
+
+        <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
+    <van-cell-group>
+      <van-cell v-for="(item, index) in items" :key="index"  :value='item.publish_time' @click="ToMessage" >
+    <template #title>
+      <div class="title-with-image">
+        <img :src="item.image_url" alt="图片" class="title-image" />
+        <span class="title-text">{{ item.title }}</span>
+      </div>
+    </template>
+      </van-cell>
+    </van-cell-group>
+
+    
+      </van-tab>
+    </van-tabs>
+
+
+
+
+
+<!-- <img v-for="(item, index) in items" :key="index":src="item.image_url" alt=""> -->
 
   </div>
 </template>
 
-<!-- <script setup>
-import { ref } from 'vue';
 
-const searchValue = ref('');
-const activeTab = ref(0);
-const activeTabbar = ref(0);
-
-const onSearchClick = () => {
-  // 点击搜索图标的逻辑，比如展开搜索框等，这里简单示例
-  console.log('点击搜索图标');
-};
-
-const onSearch = (value) => {
-  // 搜索逻辑，比如根据 value 发请求获取数据等
-  console.log('搜索内容：', value);
-};
-</script> -->
 
 <style scoped>
 .home-page {
@@ -100,44 +179,90 @@ const onSearch = (value) => {
   height: 100%;
   font-size: 16px;
   color: #333;
+      background-size: contain;
+}
+/*帖子title样式 */
+.title-with-image {
+  display: flex;
+  align-items: center;
+}
+.title-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+.title-text {
+  flex: 1;
 }
 </style>
 <script>
 import axios from 'axios';
-//import { onMounted } from 'vue';
-import { ref } from 'vue';
-
-const searchValue = ref('');
-const activeTab = ref(0);
-const activeTabbar = ref(0);
-
-const onSearchClick = () => {
-  // 点击搜索图标的逻辑，比如展开搜索框等，这里简单示例
-  console.log('点击搜索图标');
-};
-
-const onSearch = (value) => {
-  // 搜索逻辑，比如根据 value 发请求获取数据等
-  console.log('搜索内容：', value);
-};
+import { Toast } from 'vant'; // 确保引入 Toast 组件
 
 export default {
   name: 'row',
   data() {
     return {
-      items: []
+      items: [],
+      image:{},
+      searchValue: '',
+      activeTab: '推荐' // 设置默认激活的标签页
     };
   },
   mounted() {
-    axios.get('https://www.imooc.com/api/mall-wepApp/index/product?icode=JA2424E92D6EFBEEC')
-      .then(res => {
-        this.items = res.data.data;
-        console.log(this.items);
-      })
-      .catch(err => {
-        console.error('数据加载失败:', err);
-      });
+    this.loadData();
+  },
+  methods: {
+
+    loadData() {
+      axios.get('http://192.168.73.40:8000/api/home_sections')
+        .then(res => {
+          //this.items = res.data ;
+          this.image=res.data[3].carousel_images
+;this.items=res.data[3].posts
+          console.log('数据加载成功:', res);
+        })
+        .catch(err => {
+          console.error('数据加载失败:', err);
+          //Toast.fail('数据加载失败');
+        });
+    },
+
+    // 处理搜索事件
+    onSearch() {
+      if (!this.searchValue.trim()) {
+        Toast('请输入搜索内容');
+        return;
+      }
+
+      // 这里可以添加实际的搜索逻辑
+      console.log('执行搜索:', this.searchValue);
+      Toast(`搜索: ${this.searchValue}`);
+
+      // 示例：根据搜索值过滤数据
+      this.filterItems(this.searchValue);
+    },
+    ToMessage(){
+        this.$router.push('/message')
+    },
+    // 根据关键词过滤数据
+    filterItems(keyword) {
+      // 重新加载数据作为示例
+      this.loadData();
+
+      // 实际项目中可以根据关键词过滤数据
+      // const filtered = this.items.filter(item =>
+      //   item.name.includes(keyword) || item.desc.includes(keyword)
+      // );
+      // this.items = filtered;
+    },
+
+    // 点击搜索图标
+    onSearchClick() {
+      this.$refs.searchRef.focus(); // 聚焦到搜索框
+    }
   }
 }
-
 </script>

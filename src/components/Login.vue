@@ -177,15 +177,15 @@ export default {
       togglePasswordVisibility() {
       this.showPassword = !this.showPassword;},
     login() {
-      if (this.password === '123456' && this.phone === 'admin') {
-        this.$router.push('/');
-        sessionStorage.setItem('token', '111');
-      } else {
-        //this.$message.error('密码错误或用户不存在');
+    //   if (this.password === '123456' && this.phone === 'admin') {
+    //     this.$router.push('/');
+    //     sessionStorage.setItem('token', '111');
+    //   } else {
+    //     //this.$message.error('密码错误或用户不存在');
 
-      }
-    //       axios.post('api',{phone:this.phone,password:this.password})
-    // .then(res=>{sessionStorage.setItem('token', '111');this.$router.push('/login')}).catch(err=>{console.error('登录失败', err);})
+    //   }
+           axios.post('http://192.168.73.40:8000/api/login',{phone:this.phone,password:this.password})
+     .then(res=>{sessionStorage.setItem('token', '111');this.$router.push('/');console.log('111')}).catch(err=>{console.error('登录失败', err);})
 },
     OnRegister(){this.$router.push('/Register')}
     },
