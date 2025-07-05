@@ -4,7 +4,6 @@
   <van-nav-bar
     left-arrow
     @click-left="onClickLeft"
-    background="none"
   />
   </div>
   <div class="red-education-container">
@@ -54,15 +53,36 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import 'vant/lib/index.css'; // 引入 Vant 样式，若用自动按需引入可配 unplugin-vue-components
 
+import 'vant/lib/index.css'; // 引入 Vant 样式，若用自动按需引入可配 unplugin-vue-components
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+const router=useRouter();
+const messageData = ref(null);
+
+const title=ref('');
+const publishTime=ref('');
+//const source=ref('');
+const content=ref('');
+const imageUrl=ref('');
+onMounted(() => {
+  // 从sessionStorage获取并解析数据
+  const data = sessionStorage.getItem('data');
+  if (data) {
+    messageData.value = JSON.parse(data);
+    console.log('接收到的数据:', messageData.value);
+    content.value=messageData.value.content;
+    title.value=messageData.value.title;
+    publishTime.value=messageData.value.publish_time;
+    imageUrl.value=messageData.value.image_url;
+  }
+});
 // 模拟数据
-const title = '传承红色精神，践行初心使命';
-const publishTime = '2025-07-04';
+//const title = '传承红色精神，践行初心使命';
+//const publishTime = '2025-07-04';
 const source = '红色教育平台';
-const content = '正文内容...这里可填充红色教育相关文章、故事等，传递红色文化、革命历史与精神内涵...';
-const imageUrl = 'https://via.placeholder.com/300x200?text=Red+Education'; // 占位图，替换实际图片地址
+//const content = '正文内容...这里可填充红色教育相关文章、故事等，传递红色文化、革命历史与精神内涵...';
+//const imageUrl = 'https://via.placeholder.com/300x200?text=Red+Education'; // 占位图，替换实际图片地址
 
 // 互动相关状态
 const comment = ref('');
@@ -72,8 +92,8 @@ const liked = ref(false); // 点赞状态
 // 导航栏返回事件
 const onClickLeft = () => {
   // 可实现返回上一页逻辑，如使用 vue-router 的 useRouter
-  const router = useRouter();
-  router.back();
+
+  router.go(-1);
 };
 
 // 发表评论
@@ -191,4 +211,8 @@ const handleShare = () => {
     background-repeat: repeat-x;
     background-position: center center;
 }
+.van-nav-bar{
+    background:none;
+}
+
 </style>

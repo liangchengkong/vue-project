@@ -7,24 +7,9 @@
         class="custom-nav"
         style="background-color: transparent;"
       />
-      <div class="user-info">
-        <van-image round src=""class="avatar"/>
-        <div class="nickname">昵称</div>
-      </div>
+
     </div>
 
-    <!-- 功能快捷入口 -->
-    <div class="func-group">
-      <div
-        class="func-item"
-        v-for="(item, index) in funcList"
-        :key="index"
-        @click="handleFuncClick(item)"
-      >
-        <van-icon :name="item.icon" class="func-icon" />
-        <div class="func-text">{{ item.text }}</div>
-      </div>
-    </div>
 
     <!-- 更多设置入口 -->
     <van-cell-group class="setting-group">
@@ -32,7 +17,6 @@
         v-for="(item, index) in settingList"
         :key="index"
         :title="item.title"
-        :icon="item.icon"
         is-link
         @click="handleSettingClick(item)"
       />
@@ -43,33 +27,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+
 import { useRouter } from 'vue-router';
 const router = useRouter();
-// 响应式数据
-const activeTab = ref('mine'); // 默认选中“我的”
 
-// 功能快捷入口数据
-const funcList = [
-  { icon: 'like-o', text: '我的收藏' },
-  { icon: 'clock-o', text: '浏览历史' },
-  { icon: 'notes-o', text: '我的课程' },
-];
 
 // 更多设置数据
 const settingList = [
-  { icon: 'user', title: '账号管理' },
-  { icon: 'service', title: '问题反馈' },
-  { icon: 'setting', title: '设置' },
+  {  title: '切换账号' },
+  {  title: '退出' },
 ];
 
-// 交互方法（可根据实际逻辑完善）
-const handleFuncClick = (item) => {
-  console.log('点击了', item.text);
-};
 const handleSettingClick = (item) => {
   console.log('点击了', item.title);
-  router.push('/settings')
+  router.push('/login');
 };
 </script>
 

@@ -7,7 +7,7 @@ import { cellGroupProps, Tabbar, TabbarItem } from 'vant';
 import App from './App.vue'
 import router from './router'
 import { Button } from 'vant';
-import { Checkbox,Form,Field, CellGroup ,Cell,Search,Tab,Tabs,Swipe,SwipeItem,NavBar,Image,Icon,} from 'vant';
+import { Checkbox,Form,Field, CellGroup ,Cell,Search,Tab,Tabs,Swipe,SwipeItem,NavBar,Image,Icon,Tag} from 'vant';
 
 
 
@@ -31,6 +31,7 @@ app.use(Form);
 app.use(CellGroup);
 app.use(Checkbox);
 app.use(Image);
+app.use(Tag);
 app.use(Cell);
 app.use(Icon);
 app.mount('#app')

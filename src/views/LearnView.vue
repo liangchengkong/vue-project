@@ -64,21 +64,21 @@ export default{
       <van-tab title="推荐" >
 <!-- 轮播图 -->
     <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="(item, index) in 2" :key="index">
-        <div class="swipe-item">图片</div>
+      <van-swipe-item v-for="(item, index) in recommendcarousel_images" :key="index">
+        <div class="swipe-item" :style="{ backgroundImage: `url('${item.url}')` }"></div>
       </van-swipe-item>
     </van-swipe>
 <!-- 推荐 -->
     <div class="recommend-section">
       <div class="section-header">
         <span>为您推荐</span>
-        <van-button  round type="default" size="small" @click="goToMore" >更多</van-button>
+        <!-- <van-button  round type="default" size="small" @click="goToMore" >更多</van-button> -->
       </div>
       <div class="course-list">
-        <div class="course-item" v-for="(item, index) in 4" :key="index">
-          <div class="course-img"> <!-- 占位图 --> </div>
-          <div class="course-name">XX课程</div>
-          <div class="course-duration">时长{{ item }}</div>
+        <div class="course-item" v-for="(item, index) in recommendposts" :key="index" @click="ToMessage(item)">
+          <div class="course-img" :style="{ backgroundImage: `url('${item.image_url}')` }">  </div>
+          <div class="course-name">{{ item.title }}</div>
+          <div class="course-duration">时长{{ item.study_time }}</div>
         </div>
       </div>
     </div>
@@ -88,12 +88,12 @@ export default{
       <div class="section-header">
       </div>
       <div class="rank-list">
-        <div class="rank-item" v-for="(item, index) in 4" :key="index">
-          <div class="rank-img" > </div>
-          <div class="name">{{item}}</div>
-          <div class="time">时长</div>
+        <div class="rank-item" v-for="(item, index) in rankcourse" :key="index" @click="ToMessage(item)">
+          <div class="rank-img" :style="{ backgroundImage: `url('${item.image_url}')` }"> </div>
+          <div class="name">{{item.title}}</div>
+          <!-- <div class="time"></div> -->
 
-          <div class="score">评分</div>
+          <div class="score">{{ item.rating }}</div>
 
         </div>
       </div>
@@ -101,12 +101,7 @@ export default{
       </van-tab>
     </van-tabs>
 
-<!-- <div class="redbg" style="height:100px"></div> -->
-<!-- <img src="@/assets/去除红色教育字体.png" alt="" style="height: 100px;"> -->
-    <!-- 轮播图 -->
 
-
-    <!-- 内容列表，这里简单用 Cell 模拟，实际可替换成真实内容 -->
 
 
 
@@ -116,12 +111,16 @@ export default{
 <script setup>
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const rankcourse=ref('');
-const recommendcourse=ref('');
-onMounted(()=>{axios.post('api').then(res=>{recommendcourse.value=res.recommendcourse;
-rankcourse.value=res.rankcourse;
+const recommendcarousel_images=ref('');
+const recommendposts=ref('');
+onMounted(()=>{axios.get('http://192.168.73.40:8000/api/study_sections').then(res=>{
+console.log(res);
+ recommendcarousel_images.value=res.data.recommend.carousel_images;
+recommendposts.value=res.data.recommend.posts;
+ rankcourse.value=res.data.ranklist.posts;
 }).catch(err=>{console.log('无法获取到课程')})})
 
 const searchValue = ref('');
@@ -147,6 +146,11 @@ const goToRank = () => {
 const goToMore = () => {
   console.log('查看更多推荐');
 };
+const ToMessage = (item) => {
+  sessionStorage.setItem('data', JSON.stringify(item));
+  router.push('/message'); // 使用获取的路由实例
+};
+
 </script>
 
 <style scoped>
@@ -173,10 +177,11 @@ const goToMore = () => {
   background-color: #eee;
   margin: 10px;
   border-radius: 8px;
+  background-size: contain;
 }
 .name{
-    margin: 12px;
-
+    margin: 1px;
+    font-size: 14px;
 }
 .time{
     margin-right: 70px;
@@ -189,6 +194,7 @@ const goToMore = () => {
   height: 100%;
   font-size: 16px;
   color: #333;
+  background-size: contain;
 }
 /* 为你推荐区 */
 .recommend-section {
@@ -211,7 +217,7 @@ const goToMore = () => {
 }
 .course-item {
   width: 48%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-align: center;
 }
 .rank-list{
@@ -223,16 +229,17 @@ const goToMore = () => {
 
 .rank-item{
     width: 100%;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
 /* flex-wrap: wrap; */
   /* text-align: center; */
+
 }
 .course-img {
   height: 80px;
   background-color: #eee;
   border-radius: 8px;
   margin-bottom: 5px;
-
+background-size: contain;
 }
 .rank-img {
   height: 80px;
@@ -241,7 +248,8 @@ const goToMore = () => {
   margin-bottom: 5px;
   margin-right: 10px;
   width: 50%;
-  float:left
+  float:left;
+  background-size: contain;
 }
 .course-name {
   font-size: 14px;
@@ -250,5 +258,9 @@ const goToMore = () => {
 .course-duration {
   font-size: 12px;
   color: #999;
+}
+.score{
+    margin-right: 10px;
+    color:brown
 }
 </style>

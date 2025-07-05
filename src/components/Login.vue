@@ -92,10 +92,7 @@ else
 
 <template>
   <div class="login-page">
-    <!-- 返回箭头 -->
-    <van-cell-group>
-      <van-cell is-link  title="&lt;" value="" />
-    </van-cell-group>
+
 
     <!-- 标题 -->
     <h2 class="title">密码登录</h2>

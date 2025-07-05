@@ -12,7 +12,7 @@ let route= useRoute();
 
     <div >
 
-        <Tabbar v-if="route.path!='/login'&&route.path!='/Register'&&route.path!='/message'"></Tabbar>
+        <Tabbar v-if="route.path!='/login'&&route.path!='/Register'&&route.path!='/message'&&route.path!='/settings'"></Tabbar>
 
 
     </div>
